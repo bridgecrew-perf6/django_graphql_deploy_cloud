@@ -1,29 +1,25 @@
 # Dockerfile for Django Applications
-# Base Image
+# Pull official base image
 FROM python:3.10
 
-# Python Interpreter Flags
+# Set environment variables
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-# Compiler and OS libraries
+# Install OS dependencies
 RUN apt-get update \
   && apt-get install -y --no-install-recommends build-essential libpq-dev \
   && rm -rf /var/lib/apt/lists/*
 
-# Project libraries and User Creation
 COPY requirements.txt /tmp/requirements.txt
 
+# Install python librairies 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /tmp/requirements.txt \
-    && rm -rf /tmp/requirements.txt \
-    && useradd -U app_user \
-    && install -d -m 0755 -o app_user -g app_user /app/static
+    && rm -rf /tmp/requirements.txt
 
-# Code and User Setup
+# Set work directory
 WORKDIR /app
-USER app_user:app_user
-COPY --chown=app_user:app_user . .
 
 # RUN
-CMD ["/bin/bash", "-c"]
+RUN gunicorn django_graphql_api.wsgi
