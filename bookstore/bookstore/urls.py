@@ -1,4 +1,4 @@
-"""django_graphql_api URL Configuration
+"""bookstore URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+
 from graphene_django.views import GraphQLView
+
+from bookstore.books.schema import schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("graphql", GraphQLView.as_view(graphiql=True)),
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
 ]
