@@ -1,10 +1,13 @@
 Django==4.0.4
-django-environ==0.8.1
-graphene==3.1
+django-graphiql==0.4.4
+graphene==2.1.9
 graphene-django==2.15.0
+graphql-core==2.3.2
+graphql-relay==2.0.1
 requests==2.27.1     
 django-filter==21.1
 gunicorn==20.1.0
 pymongo==4.1.1
 pytest==7.1.1
 pylint==2.12.2
+django-environ==0.8.1

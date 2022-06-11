@@ -20,6 +20,10 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt \
 
 # Set work directory
 WORKDIR /app
+ADD bookstore /app/
 
 # RUN
-RUN gunicorn django_graphql_api.wsgi
+COPY start.sh /app/
+RUN chmod +x start.sh
+
+ENTRYPOINT ["/app/start.sh" ]
