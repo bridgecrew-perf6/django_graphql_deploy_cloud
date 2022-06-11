@@ -1,6 +1,6 @@
 # Django + GraphQL + Docker
 
-This project is a simple Django application based on GraphQL and a bookstore usecase. GraphQL is a query language for APIs that gives clients the ability to ask exactly what they need from APIs.
+This project is a simple [Django](https://www.djangoproject.com/) application based on GraphQL and a bookstore usecase. [GraphQL](https://graphql.org/) is a query language for APIs that gives clients the ability to ask exactly what they need from APIs.
 
 ## Project Structure
 
